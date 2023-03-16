@@ -7,3 +7,4 @@ int missingNumber(vector<int>&a, int N) {
     }
     xor1 = xor1 ^ N;
     return xor1 ^ xor2;
+}
