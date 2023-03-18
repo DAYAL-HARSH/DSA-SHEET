@@ -39,4 +39,5 @@ string read(int n, vector<int> book, int target)
     return "NO";
 }
 // *note = this optimal solution is only for yes or no type of question
-Tc - O(N)
+Tc - O(N) + O(NlogN)
+Sc - O(1)
