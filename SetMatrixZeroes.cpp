@@ -1,3 +1,29 @@
+//brute force approach
+//In brute force we will iterate in the matrix and we will try to find a 0, whenever we encounter a zero we will mark -1 to the row and column of the zero excluding
+//the zeros in the row and column, then after that iteration, we will convert all the -1 to zeros
+
+#include <bits/stdc++.h> 
+vector<vector<int>> zeroMatrix(vector<vector<int>> &matrix, int n, int m) {
+	int row[n] = {0};
+    int col[m] = {0};
+    for(int i = 0; i < n; i++){
+		for(int j = 0; j < m; j++){
+			if(matrix[i][j] == 0){
+				row[i] = 1;
+				col[j] = 1;
+			}
+		}
+	}
+	for(int i = 0; i < n; i++){
+		for(int j = 0; j < m; j++){
+			if(row[i] || col[j]){
+				matrix[i][j] = 0;
+			}
+		}
+	}
+	return matrix;
+}
+
 // optimal approach taking two array in the matrix to store zeros in it according to the zeros in the matrix.
 
 class Solution {
