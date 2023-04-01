@@ -10,8 +10,7 @@ int main() {
         if(n%i == 0){
             ls.insert(i);
             if(n/i != 1){
-                ls.insert(n/i);
-                
+                ls.insert(n/i); 
             }
         }
     }
