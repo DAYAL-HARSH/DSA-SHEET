@@ -27,3 +27,7 @@ int main(){
     insertion_sort(arr,n);
     return 0;
 }
+
+
+TC -> O(N) best case 
+SC -> O(1)
