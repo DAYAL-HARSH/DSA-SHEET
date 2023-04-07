@@ -1,3 +1,5 @@
+// Intution -> select minimum and sort 
+
 #include<bits/stdc++.h>
 using namespace std;
 
