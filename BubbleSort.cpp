@@ -26,3 +26,6 @@ int main(){
     selection_sort(arr,n);
     return 0;
 }
+
+TC -> best case -> O(N) and O(n^2) average and worst case
+SC -> O(1)
