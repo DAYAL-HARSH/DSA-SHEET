@@ -17,3 +17,4 @@ int main(){
     cout<<largest;
     return 0;
 }
+TC -> O(N)
