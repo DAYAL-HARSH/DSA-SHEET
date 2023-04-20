@@ -2,28 +2,25 @@
 // In brute force appraoch we will use three loops and try all the triplets that have the sum = 0 and we will use a SET data structure to store triplets to eliminate
 // duplicates 
 //code -> 
-  class Solution {
-  public:
-    vector<vector<int>> threeSum(vector<int>& nums) {
-        vector < vector < int >> ans;
-        vector < int > temp;
-        int i, j, k;
-        for (i = 0; i < nums.size() - 2; i++) {
-            for (j = i + 1; j < nums.size() - 1; j++) {
-                for (k = j + 1; k < nums.size(); k++) {
-                    temp.clear();
-                    if (nums[i] + nums[j] + nums[k] == 0) {
-                        temp.push_back(nums[i]);
-                        temp.push_back(nums[j]);
-                        temp.push_back(nums[k]);
-                    }
-                    if (temp.size() != 0) ans.push_back(temp);
+#include<bits/stdc++.h>
+vector<vector<int>> triplet(int n, vector<int> &arr)
+{
+    // Write your code here.
+    set<vector<int>> st;
+    for(int i = 0; i < n; i++){
+        for(int j = i+1; j < n; j++){
+            for(int k = j+1; k < n; k++){
+                if(arr[i] + arr[j] + arr[k] == 0){
+                  vector<int> temp = { arr[i], arr[j], arr[k] };
+                  sort(temp.begin(), temp.end());\
+                  st.insert(temp);
                 }
             }
         }
-        return ans;
     }
-};
+    vector<vector<int>> ans(st.begin(), st.end());
+    return ans;
+}
 
 
 // 2. better solution 
