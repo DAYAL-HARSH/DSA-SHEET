@@ -27,18 +27,27 @@ vector<vector<int>> triplet(int n, vector<int> &arr)
 // using hashing 
 //we will run two loops for a and b and using hashing for c 
 //a + b + c = 0 -> c = -(a+b)
-//  pseudo code->
-  
-  for(i = 0 to n-1){
-    hash[a[i]]--;
-    for(j = i+1 to n-1){
-        hash[a[j]]--;
-        find this in the array 'c' = -> -(a[i]+a[j])
+//  code->
+#include<bits/stdc++.h>
+vector<vector<int>> triplet(int n, vector<int> &arr)
+{
+    set<vector<int>> st;
+    for(int i = 0; i < n; i++){
+        set<int> hashset;
+        for(int j = i+1; j < n; j++){
+            int third = -(arr[i] + arr[j]);
+            if(hashset.find(third) != hashset.end()){
+                vector<int> temp = { arr[i], arr[j], third };
+                sort(temp.begin(), temp.end());
+                st.insert(temp);
+            }
+            hashset.insert(arr[j]);
+        }
     }
-      hash[a[j]]++;
-  }
-  hash[a[i]]++;
-  
+    vector<vector<int>> ans(st.begin(), st.end());
+    return ans;    
+}
+
 
 // 3. optimal approach
 // uisng two pointer approach 
@@ -49,37 +58,27 @@ vector<vector<int>> triplet(int n, vector<int> &arr)
 // now take two pointers lo and hi 
 // a = arr[i] lo = arr[i+1] hi = arr[n-1]
 
-class Solution {
-public:
-    vector<vector<int>> threeSum(vector<int>& nums) {
-        sort(nums.begin(), nums.end());
-        vector<vector<int>> res;
-
-        for(int i = 0; i < nums.size()-2; i++){
-            
-            if(i == 0 || (i > 0 && nums[i] != nums[i-1])){
-                
-                int lo = i+1, hi = nums.size()-1, sum = 0 - nums[i];
-
-                while(lo < hi){
-                    if(nums[lo] + nums[hi] == sum){
-                        vector<int> temp;
-                        temp.push_back(nums[i]);
-                        temp.push_back(nums[lo]);
-                        temp.push_back(nums[hi]);
-                        res.push_back(temp);
-
-                        while(lo < hi && nums[lo] == nums[lo + 1]) lo++;
-                        while(lo < hi && nums[hi] == nums[hi - 1]) hi--;
-
-                        lo++;
-                        hi--;
-                    }
-                    else if(nums[lo] + nums[hi] < sum) lo++;
-                    else hi--;
-                }
+vector<vector<int>> triplet(int n, vector<int> &arr){
+    sort(arr.begin(), arr.end());
+    vector<vector<int>> ans;
+    for(int i = 0; i < n; i++){
+        if(i > 0 && arr[i] == arr[i-1]) continue;
+        int j = i + 1;
+        int k = n - 1;
+        while(j < k){
+            int sum = arr[i] + arr[j] + arr[k];
+            if(sum < 0) j++;
+            else if(sum > 0) k--;
+            else{
+                vector<int> temp = { arr[i], arr[j], arr[k] };
+                ans.push_back(temp);
+                j++; 
+                k--;
+                while(j < k && arr[j] == arr[j-1]) j++;
+                while(j < k && arr[k] == arr[k+1]) k--;
             }
         }
-        return res;
     }
-};
+    return ans;
+}
+
