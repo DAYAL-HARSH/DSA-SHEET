@@ -82,3 +82,37 @@ vector<vector<int>> triplet(int n, vector<int> &arr){
     return ans;
 }
 
+
+3sum closest (GFG Question)
+    code-> 
+    class Solution{
+    public:
+    int closest3Sum(int A[], int N, int X)
+    {
+        // code here
+        int ans = 0;
+        int diff = INT_MAX;
+        sort(A, A+N);
+        for(int i = 0; i < N; i++){
+            int first = A[i];
+            int start = i + 1;
+            int end = N - 1;
+            while(start<end){
+                if(first + A[start] + A[end] == X) return X;
+                else if(abs(first + A[start] + A[end] - X) < diff){
+                    diff = abs(first + A[start] + A[end] - X);
+                    ans = first+ A[start] + A[end];
+                    
+                }
+                if(first + A[start] + A[end] > X){
+                    end--;
+                }
+                else{
+                    start++;
+                }
+            }
+        }
+        return ans;
+    }
+};
+
