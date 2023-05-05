@@ -93,3 +93,5 @@ int main()
     }
     return 0;
 }
+TC-> O(N1 + N2)
+SC-> O(N1 + N2) Just used to print the answer
